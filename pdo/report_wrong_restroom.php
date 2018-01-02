@@ -16,7 +16,7 @@
   
   function check_if_number_in_count($fields, $pdo){
 	  $statement = $pdo->prepare("
-	    SELECT * FROM reported_restroom_count
+	    SELECT * FROM amount
 		WHERE number = :number");
 	  $statement->execute(['number' => $fields->number]);
 	  if(0 == $statement->rowCount()){
@@ -29,14 +29,14 @@
   
   function execute_count_insert($fields, $pdo){
 	  $statement = $pdo->prepare("
-		INSERT INTO reported_restroom_count (number)
+		INSERT INTO amount (number)
 		VALUES(:number)");
 	  $statement->execute(['number' => $fields->number]);
   }
   
   function execute_count_update($fields, $pdo){
 	  $statement = $pdo->prepare("
-		UPDATE reported_restroom_count
+		UPDATE amount
 		SET count = count + 1
 		WHERE number = :number");
 	  $statement->execute(['number' => $fields->number]);
